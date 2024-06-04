@@ -13,7 +13,7 @@ const Navbar = () => {
 
   return (
     <div>
-      <div className="navbar bg-slate-600 lg:text-slate-50  text-black fixed z-50">
+      <div className="navbar bg-slate-600 lg:text-slate-50  text-black top-0 fixed z-50">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -40,10 +40,10 @@ const Navbar = () => {
                 <Link to={"/"}>Home</Link>
               </li>
               <li>
-                <Link to={"/about"}>Events</Link>
+                <Link to={"/event"}>Events</Link>
               </li>
               <li>
-                <Link>CreateEvent</Link>
+                <Link to={"/create-event"}>CreateEvent</Link>
               </li>
 
               {!user && (
@@ -72,10 +72,10 @@ const Navbar = () => {
               <Link to={"/"}>Home</Link>
             </li>
             <li>
-              <Link to={"/about"}>Events</Link>
+              <Link to={"/event"}>Events</Link>
             </li>
             <li>
-              <Link>CreateEvent</Link>
+              <Link to={"/create-event"}>CreateEvent</Link>
             </li>
 
             {!user && (

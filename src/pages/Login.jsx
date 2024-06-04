@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import loginImg from "../assets/images/login.jpg";
 import GoogleRegister from "../components/login_register/GoogleRegister";
@@ -8,9 +8,9 @@ import toast from "react-hot-toast";
 
 const Login = () => {
   const { login } = useAuth();
-  //   const navigate = useNavigate();
-  //   const location = useLocation();
-  //   const from = location?.state?.from?.pathname || "/";
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location?.state?.from?.pathname || "/";
   const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
@@ -19,7 +19,7 @@ const Login = () => {
     console.log(email, password);
     await login(email, password)
       .then((data) => {
-        //   navigate(from);
+        navigate(from);
         const user = data.user;
         console.log(user);
         toast.success("Login Successfully");

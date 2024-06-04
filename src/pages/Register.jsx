@@ -1,21 +1,36 @@
-import { Link } from "react-router-dom";
-import { FaGoogle } from "react-icons/fa";
-import { FaFacebook } from "react-icons/fa";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+
 import registration from "../assets/images/registration.jpg";
 import useAuth from "../hooks/useAuth";
 import toast from "react-hot-toast";
+import FacebookRegister from "../components/login_register/FacebookRegister";
+import GoogleRegister from "../components/login_register/GoogleRegister";
 const Register = () => {
   const { createNewUser } = useAuth();
-  const handleRegistration = (e) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location?.state?.from?.pathname || "/";
+  const handleRegistration = async (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
+    const name = form.name.value;
     const password = form.password.value;
+
     const confirmPassword = form.confirmPassword.value;
+    const userInfo = { name, email };
     createNewUser(email, password)
-      .then((data) => {
-        const user = data.user;
-        console.log(user);
+      .then(async () => {
+        navigate(from);
+        await fetch("http://localhost:3000/users", {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify(userInfo),
+        })
+          .then((res) => res.json())
+          .then((data) => console.log(data));
         toast.success("Registration Successfull!!!");
         form.reset();
       })
@@ -46,6 +61,18 @@ const Register = () => {
                 placeholder="email"
                 className="input input-bordered"
                 name="email"
+                required
+              />
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Your Name</span>
+              </label>
+              <input
+                type="text"
+                placeholder="Your Name"
+                className="input input-bordered"
+                name="name"
                 required
               />
             </div>
@@ -86,13 +113,9 @@ const Register = () => {
             </p>
           </div>
           <div className="flex justify-center items-center w-full mb-4">
-            <button className="btn text-xl w-2/5 flex justify-center items-center">
-              <FaGoogle /> With Google
-            </button>
+            <GoogleRegister />
             <div className="divider divider-horizontal">OR</div>
-            <button className="btn text-xl w-2/5 flex justify-center items-center">
-              <FaFacebook /> With Facebook
-            </button>
+            <FacebookRegister />
           </div>
         </div>
       </div>

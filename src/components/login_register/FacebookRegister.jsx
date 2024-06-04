@@ -1,11 +1,16 @@
 import { FaFacebook } from "react-icons/fa";
 import useAuth from "../../hooks/useAuth";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const FacebookRegister = () => {
   const { facebookLogin } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location?.state?.from?.pathname || "/";
   const handleFacebookLogin = () => {
     facebookLogin()
       .then((data) => {
+        navigate(from);
         const user = data.user;
         console.log(user);
       })
