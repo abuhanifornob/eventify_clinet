@@ -12,6 +12,7 @@ import DashboardLayout from "../layouts/DashboardLayout";
 import EventForm from "../pages/CreateEvent";
 import Events from "../pages/events/Events";
 import EditEvent from "../pages/dashboard/EditEvent";
+import Edit from "../components/dashboard/Edit";
 
 export const router = createBrowserRouter([
   {
@@ -70,6 +71,16 @@ export const router = createBrowserRouter([
             <EditEvent />
           </PrivetRoute>
         ),
+      },
+      {
+        path: "editabelAllEvent/edit-event/:id",
+        element: (
+          <PrivetRoute>
+            <Edit />
+          </PrivetRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/events/${params.id}`),
       },
     ],
   },

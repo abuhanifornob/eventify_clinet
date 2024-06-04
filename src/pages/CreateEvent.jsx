@@ -46,16 +46,16 @@ const EventForm = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center gap-y-4 bg-slate-200 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-12">
+      <div className="w-[60%] mx-auto space-y-12">
         <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+          <h2 className="mt-12 text-center text-3xl font-extrabold text-gray-900">
             Create an Event
           </h2>
         </div>
         <form className="mt-8 space-y-12 gap-y-4 " onSubmit={handleSubmit}>
-          <div className="rounded-md shadow-sm -space-y-px">
+          <div className="rounded-lg shadow-sm -space-y-px">
             <div>
-              <label htmlFor="title" className="sr-only">
+              <label htmlFor="title" className="font-serif text-xl ms-3">
                 Title
               </label>
               <input
@@ -64,14 +64,14 @@ const EventForm = () => {
                 type="text"
                 autoComplete="title"
                 required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                className="text-xl block w-full px-3 py-3 my-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10"
                 placeholder="Event Title"
                 value={event.title}
                 onChange={handleChange}
               />
             </div>
             <div>
-              <label htmlFor="description" className="sr-only">
+              <label htmlFor="description" className="font-serif text-xl ms-3">
                 Description
               </label>
               <textarea
@@ -79,14 +79,14 @@ const EventForm = () => {
                 name="description"
                 autoComplete="description"
                 required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                className="text-xl block w-full px-3 py-3 my-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10"
                 placeholder="Event Description"
                 value={event.description}
                 onChange={handleChange}
               />
             </div>
             <div>
-              <label htmlFor="date" className="sr-only">
+              <label htmlFor="date" className="font-serif text-xl ms-3">
                 Date
               </label>
               <input
@@ -94,13 +94,13 @@ const EventForm = () => {
                 name="date"
                 type="date"
                 required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                className="text-xl block w-full px-3 py-3 my-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10"
                 value={event.date}
                 onChange={handleChange}
               />
             </div>
             <div>
-              <label htmlFor="time" className="sr-only">
+              <label htmlFor="time" className="font-serif text-xl ms-3">
                 Time
               </label>
               <input
@@ -108,13 +108,13 @@ const EventForm = () => {
                 name="time"
                 type="time"
                 required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                className="text-xl block w-full px-3 py-3 my-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10"
                 value={event.time}
                 onChange={handleChange}
               />
             </div>
             <div>
-              <label htmlFor="location" className="sr-only">
+              <label htmlFor="location" className="font-serif text-xl ms-3">
                 Location
               </label>
               <input
@@ -123,21 +123,21 @@ const EventForm = () => {
                 type="text"
                 autoComplete="location"
                 required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                className="text-xl block w-full px-3 py-3 my-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10"
                 placeholder="Event Location"
                 value={event.location}
                 onChange={handleChange}
               />
             </div>
             <div>
-              <label htmlFor="category" className="sr-only">
+              <label htmlFor="category" className="font-serif text-xl ms-3">
                 Category
               </label>
               <select
                 id="category"
                 name="category"
                 required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                className="text-xl block w-full px-3 py-3 my-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10"
                 value={event.category}
                 onChange={handleChange}
               >
@@ -159,7 +159,7 @@ const EventForm = () => {
               </select>
             </div>
             <div>
-              <label htmlFor="image" className="sr-only">
+              <label htmlFor="image" className="font-serif text-xl ms-3">
                 Event Image
               </label>
               <input
@@ -168,12 +168,12 @@ const EventForm = () => {
                 type="text"
                 placeholder="Provide Images URL"
                 required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                className="text-xl block w-full px-3 py-3 my-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10"
                 onChange={handleChange}
               />
             </div>
             <div>
-              <label htmlFor="creatorName" className="sr-only">
+              <label htmlFor="creatorName" className="font-serif text-xl ms-3">
                 Creator Name
               </label>
               <input
@@ -181,7 +181,7 @@ const EventForm = () => {
                 name="creatorName"
                 type="text"
                 autoComplete="creatorName"
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                className="text-xl block w-full px-3 py-3 my-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10"
                 placeholder="Creator Name"
                 value={user?.displayName}
                 onChange={handleChange}
@@ -189,10 +189,10 @@ const EventForm = () => {
             </div>
           </div>
 
-          <div>
+          <div className="flex justify-center">
             <button
               type="submit"
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              className="group relative w-[50%] flex justify-center py-4 px-4 border border-transparent text-xl font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
               Create Event
             </button>

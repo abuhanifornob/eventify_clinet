@@ -1,4 +1,7 @@
 /* eslint-disable react/prop-types */
+import { MdDelete } from "react-icons/md";
+import { CiEdit } from "react-icons/ci";
+import { Link } from "react-router-dom";
 const SingalEventForEdit = ({ event }) => {
   const {
     category,
@@ -8,6 +11,7 @@ const SingalEventForEdit = ({ event }) => {
     image,
     location,
     time,
+    _id,
   } = event;
   return (
     <div>
@@ -27,8 +31,20 @@ const SingalEventForEdit = ({ event }) => {
             <div className="text-xl font-bold ">Time: {time}</div>
           </div>
           <div className="flex justify-between items-center mt-4">
-            <button className="btn btn-primary">Edit</button>
-            <button className="btn btn-primary">Delete</button>
+            <button className="btn btn-primary">
+              <Link to={`edit-event/${_id}`}>
+                <span className="flex justify-center items-center gap-4 text-xl font-bold">
+                  <CiEdit className="text-xl font-bold" />
+                  Edit
+                </span>
+              </Link>
+            </button>
+            <button className="btn bg-red-600">
+              {" "}
+              <span className="flex justify-center items-center gap-4 text-xl font-bold">
+                <MdDelete className="text-xl font-bold" /> Delete
+              </span>
+            </button>
           </div>
         </div>
       </div>
