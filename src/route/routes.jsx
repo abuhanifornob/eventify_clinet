@@ -13,6 +13,13 @@ import Events from "../pages/events/Events";
 import EditEvent from "../pages/dashboard/EditEvent";
 import Edit from "../components/dashboard/Edit";
 import DashboardHome from "../pages/dashboard/DashboardHome";
+import ProfileLayout from "../layouts/ProfileLayout";
+import ProfileHome from "../pages/profile/ProfileHome";
+import ViewProfile from "../pages/profile/ViewProfile";
+
+import EditProfile from "../pages/profile/EditProfile";
+
+import SearchPage from "../pages/search/SearchPage";
 
 export const router = createBrowserRouter([
   {
@@ -35,6 +42,10 @@ export const router = createBrowserRouter([
       {
         path: "/event",
         element: <Events />,
+      },
+      {
+        path: "/search",
+        element: <SearchPage />,
       },
       {
         path: "/create-event",
@@ -82,6 +93,42 @@ export const router = createBrowserRouter([
         ),
         loader: ({ params }) =>
           fetch(`http://localhost:3000/events/${params.id}`),
+      },
+    ],
+  },
+  {
+    path: "profile",
+    element: (
+      <PrivetRoute>
+        {" "}
+        <ProfileLayout />
+      </PrivetRoute>
+    ),
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "",
+        element: (
+          <PrivetRoute>
+            <ProfileHome />
+          </PrivetRoute>
+        ),
+      },
+      {
+        path: "viewProfile",
+        element: (
+          <PrivetRoute>
+            <ViewProfile />
+          </PrivetRoute>
+        ),
+      },
+      {
+        path: "editProfile",
+        element: (
+          <PrivetRoute>
+            <EditProfile />
+          </PrivetRoute>
+        ),
       },
     ],
   },

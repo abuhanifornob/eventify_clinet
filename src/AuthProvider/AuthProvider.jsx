@@ -5,6 +5,7 @@ import {
   createUserWithEmailAndPassword,
   getAuth,
   onAuthStateChanged,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
@@ -28,6 +29,10 @@ const AuthProvider = ({ children }) => {
   const facebookLogin = () => {
     setLoading(true);
     return signInWithPopup(auth, FacebookProvider);
+  };
+  const passworrReset = (email) => {
+    setLoading(true);
+    return sendPasswordResetEmail(auth, email);
   };
   const createNewUser = (emai, password) => {
     setLoading(true);
@@ -66,6 +71,7 @@ const AuthProvider = ({ children }) => {
     logout,
     loading,
     setLoading,
+    passworrReset,
   };
 
   return (

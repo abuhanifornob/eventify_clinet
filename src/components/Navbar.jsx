@@ -1,19 +1,29 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import eventifyLogo from "../assets/images/eventify.png";
 import useAuth from "../hooks/useAuth";
-import toast from "react-hot-toast";
+
+import { useState } from "react";
 
 const Navbar = () => {
-  const { user, logout } = useAuth();
-  const handleLogout = () => {
-    logout().then(() => {
-      toast.success("Logout Seccessful!!!");
-    });
+  const { user } = useAuth();
+
+  const [query, setQuery] = useState("");
+  const navigate = useNavigate();
+
+  const handleInputChange = (e) => {
+    setQuery(e.target.value);
+  };
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (query) {
+      navigate(`/search?q=${query}`);
+    }
   };
 
   return (
     <div>
-      <div className="navbar bg-slate-600 lg:text-slate-50  text-black top-0 fixed z-50">
+      <div className="navbar bg-slate-600 lg:text-slate-50 font-serif top-0 fixed z-50">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -34,7 +44,7 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+              className="menu menu-sm dropdown-content text-2xl mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
                 <Link to={"/"}>Home</Link>
@@ -93,6 +103,23 @@ const Navbar = () => {
               <Link to={"/dashboard"}>Dashboard</Link>
             </li>
           </ul>
+          <div>
+            <form onSubmit={handleSearch} className="flex">
+              <input
+                type="text"
+                value={query}
+                onChange={handleInputChange}
+                placeholder="Search events..."
+                className="border rounded px-4 py-2 text-black"
+              />
+              <button
+                type="submit"
+                className="ml-2 bg-blue-500 text-white px-4 py-2 rounded"
+              >
+                Search
+              </button>
+            </form>
+          </div>
         </div>
         {user && (
           <div className="navbar-end">
@@ -101,10 +128,9 @@ const Navbar = () => {
               src={user?.photoURL}
               alt=""
             />
-            <Link className="btn mx-2">Profile</Link>
-            <button onClick={handleLogout} className="btn">
-              Logout
-            </button>
+            <Link to={"/profile"} className="btn mx-2">
+              Profile
+            </Link>
           </div>
         )}
       </div>
