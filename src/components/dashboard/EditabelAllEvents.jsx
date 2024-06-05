@@ -6,7 +6,7 @@ const EditabelAllEvents = () => {
 
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    fetch("http://localhost:3000/events")
+    fetch("https://eventify-server-pe8m.vercel.app/events")
       .then((res) => res.json())
       .then((data) => {
         setEditableEvent(data);

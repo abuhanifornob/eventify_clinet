@@ -21,7 +21,7 @@ const Register = () => {
     const userInfo = { name, email };
     createNewUser(email, password)
       .then(async () => {
-        await fetch("http://localhost:3000/users", {
+        await fetch("https://eventify-server-pe8m.vercel.app/users", {
           method: "POST",
           headers: {
             "Content-type": "application/json",

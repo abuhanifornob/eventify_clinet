@@ -31,7 +31,7 @@ const EventForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const token = localStorage.getItem("token");
-    await fetch("http://localhost:3000/events", {
+    await fetch("https://eventify-server-pe8m.vercel.app/events", {
       method: "POST",
       headers: {
         "Content-type": "application/json",

@@ -17,7 +17,7 @@ const SearchPage = () => {
   const handleSearch = async (searchQuery) => {
     try {
       const response = await fetch(
-        `http://localhost:3000/search?q=${searchQuery}`
+        `https://eventify-server-pe8m.vercel.app/search?q=${searchQuery}`
       );
       const data = await response.json();
       setResults(data);
