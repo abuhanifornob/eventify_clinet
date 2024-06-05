@@ -21,7 +21,6 @@ const Register = () => {
     const userInfo = { name, email };
     createNewUser(email, password)
       .then(async () => {
-        navigate(from);
         await fetch("http://localhost:3000/users", {
           method: "POST",
           headers: {
@@ -30,9 +29,12 @@ const Register = () => {
           body: JSON.stringify(userInfo),
         })
           .then((res) => res.json())
-          .then((data) => console.log(data));
-        toast.success("Registration Successfull!!!");
-        form.reset();
+          .then((result) => {
+            navigate(from);
+            localStorage.setItem("token", result.token);
+            toast.success("Registration Successfull!!!");
+            form.reset();
+          });
       })
       .then((error) => {
         console.log(error);

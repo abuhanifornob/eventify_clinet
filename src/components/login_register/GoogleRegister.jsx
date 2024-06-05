@@ -8,30 +8,36 @@ const GoogleRegister = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location?.state?.from?.pathname || "/";
-  const handleGoogleLogin = () => {
-    googleLogin()
-      .then(async (data) => {
-        const user = data.user;
-        const userInfo = {
-          email: user?.email,
-          name: user?.displayName,
-        };
 
-        await fetch("http://localhost:3000/users", {
-          method: "POST",
-          headers: {
-            "Content-type": "application/json",
-          },
-          body: JSON.stringify(userInfo),
-        })
-          .then((res) => res.json())
-          .then((data) => console.log(data));
-        navigate(from);
-        toast.success("Google Login Success");
-      })
-      .then((error) => {
-        console.log(error);
+  const handleGoogleLogin = async () => {
+    try {
+      const data = await googleLogin();
+      const user = data.user;
+      const userInfo = {
+        email: user?.email,
+        name: user?.displayName,
+      };
+
+      const response = await fetch("http://localhost:3000/users", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userInfo),
       });
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const result = await response.json();
+      localStorage.setItem("token", result.token);
+      navigate(from);
+      toast.success("Google Login Success");
+    } catch (error) {
+      console.error("Google login error:", error);
+      toast.error("Google Login Failed");
+    }
   };
   return (
     <div>

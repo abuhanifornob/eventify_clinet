@@ -18,11 +18,10 @@ const Login = () => {
     const password = form.password.value;
     console.log(email, password);
     await login(email, password)
-      .then((data) => {
+      .then((result) => {
         navigate(from);
-        const user = data.user;
-        console.log(user);
-        toast.success("Login Successfully");
+        localStorage.setItem("token", result.token);
+        toast.success("Registration Successfull!!!");
         form.reset();
       })
       .then((error) => {

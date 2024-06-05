@@ -1,6 +1,7 @@
 import { FaFacebook } from "react-icons/fa";
 import useAuth from "../../hooks/useAuth";
 import { useLocation, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const FacebookRegister = () => {
   const { facebookLogin } = useAuth();
@@ -9,10 +10,10 @@ const FacebookRegister = () => {
   const from = location?.state?.from?.pathname || "/";
   const handleFacebookLogin = () => {
     facebookLogin()
-      .then((data) => {
+      .then((result) => {
+        localStorage.setItem("token", result.token);
         navigate(from);
-        const user = data.user;
-        console.log(user);
+        toast.success("Facebook Login Success");
       })
       .then((error) => {
         console.log(error);

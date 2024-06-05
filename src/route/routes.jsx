@@ -7,12 +7,12 @@ import Register from "../pages/Register";
 import PrivetRoute from "./ProvetRoute/PrivetRoute";
 import ErrorPage from "../pages/ErrorPage";
 
-import MyEvent from "../pages/dashboard/MyEvent";
 import DashboardLayout from "../layouts/DashboardLayout";
 import EventForm from "../pages/CreateEvent";
 import Events from "../pages/events/Events";
 import EditEvent from "../pages/dashboard/EditEvent";
 import Edit from "../components/dashboard/Edit";
+import DashboardHome from "../pages/dashboard/DashboardHome";
 
 export const router = createBrowserRouter([
   {
@@ -57,13 +57,14 @@ export const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        path: "my-event",
+        path: "",
         element: (
           <PrivetRoute>
-            <MyEvent></MyEvent>
+            <DashboardHome />
           </PrivetRoute>
         ),
       },
+
       {
         path: "editabelAllEvent",
         element: (

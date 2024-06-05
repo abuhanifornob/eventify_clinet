@@ -1,24 +1,42 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useLocation, useNavigate } from "react-router-dom";
 import { Controller, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import useAuth from "../../hooks/useAuth";
 const Edit = () => {
   const eventInfo = useLoaderData();
   const { user } = useAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location?.state?.from?.pathname || "/";
+  const token = localStorage.getItem("token");
   const {
     register,
     handleSubmit,
     control,
+    reset,
     formState: { errors },
   } = useForm();
 
   const onSubmit = async (data) => {
-    console.log(data);
+    await fetch(`http://localhost:3000/events/${eventInfo?._id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-type": "application/json",
+        authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then(() => {
+        toast.success("Data Update is Successful");
+        navigate(from);
+        reset();
+      });
   };
 
-  //   if (!event) {
-  //     return <div>Loading event details...</div>;
-  //   }
+  if (!eventInfo) {
+    return <div>Loading event details...</div>;
+  }
 
   return (
     <div className="w-full">
@@ -195,16 +213,16 @@ const Edit = () => {
 
           <div>
             <label htmlFor="creatorName" className="font-serif text-xl">
-              Creator Name
+              creatorEmail
             </label>
             <input
-              id="creatorName"
-              name="creatorName" // Maintain name for potential future editability
-              type="text"
-              autoComplete="creatorName"
+              id="creatorEmail"
+              name="creatorEmail" // Maintain name for potential future editability
+              type="email"
+              autoComplete="creatorEmail"
               className="text-xl block w-full px-3 py-3 my-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10"
               placeholder="Creator Name"
-              value={user?.displayName || "N/A"} // Display "N/A" if user?.displayName is null or undefined
+              value={user?.creatorEmail || "N/A"} // Display "N/A" if user?.displayName is null or undefined
               readOnly // Make the field read-only
             />
           </div>

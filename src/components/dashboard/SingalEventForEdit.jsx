@@ -2,17 +2,25 @@
 import { MdDelete } from "react-icons/md";
 import { CiEdit } from "react-icons/ci";
 import { Link } from "react-router-dom";
-const SingalEventForEdit = ({ event }) => {
-  const {
-    category,
-
-    date,
-    description,
-    image,
-    location,
-    time,
-    _id,
-  } = event;
+import toast from "react-hot-toast";
+const SingalEventForEdit = ({ event, onDelete }) => {
+  const { category, date, description, image, location, time, _id } = event;
+  const token = localStorage.getItem("token");
+  const handleDelete = async () => {
+    await fetch(`http://localhost:3000/events/${_id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-type": "application/json",
+        authorization: `Bearer ${token}`,
+      },
+    })
+      .then((res) => res.json())
+      .then(() => {
+        toast.success("delete Success Fullay");
+        onDelete(_id);
+      })
+      .catch((error) => console.log(error));
+  };
   return (
     <div>
       <div className="card overflow-hidden shadow-lg">
@@ -39,7 +47,7 @@ const SingalEventForEdit = ({ event }) => {
                 </span>
               </Link>
             </button>
-            <button className="btn bg-red-600">
+            <button onClick={handleDelete} className="btn bg-red-600">
               {" "}
               <span className="flex justify-center items-center gap-4 text-xl font-bold">
                 <MdDelete className="text-xl font-bold" /> Delete

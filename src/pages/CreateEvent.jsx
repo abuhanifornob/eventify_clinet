@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 
 const EventForm = () => {
   const { user } = useAuth();
+  console.log(user);
 
   const initialFormState = {
     title: "",
@@ -13,7 +14,7 @@ const EventForm = () => {
     location: "",
     category: "",
     image: "",
-    creatorName: user?.displayName,
+    creatorEmail: user?.email,
   };
 
   const [event, setEvent] = useState(initialFormState);
@@ -29,10 +30,12 @@ const EventForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const token = localStorage.getItem("token");
     await fetch("http://localhost:3000/events", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
+        authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(event),
     })
@@ -174,16 +177,16 @@ const EventForm = () => {
             </div>
             <div>
               <label htmlFor="creatorName" className="font-serif text-xl ms-3">
-                Creator Name
+                creatorEmail
               </label>
               <input
-                id="creatorName"
-                name="creatorName"
-                type="text"
-                autoComplete="creatorName"
+                id="creatorEmail"
+                name="creatorEmail"
+                type="email"
+                autoComplete="creatorEmail"
                 className="text-xl block w-full px-3 py-3 my-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10"
                 placeholder="Creator Name"
-                value={user?.displayName}
+                value={user?.email}
                 onChange={handleChange}
               />
             </div>
