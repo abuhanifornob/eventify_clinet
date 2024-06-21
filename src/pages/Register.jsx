@@ -20,8 +20,8 @@ const Register = () => {
     const confirmPassword = form.confirmPassword.value;
     const userInfo = { name, email };
     createNewUser(email, password)
-      .then(async () => {
-        await fetch("https://eventify-server-pe8m.vercel.app/users", {
+      .then(() => {
+        fetch("https://eventify-server-pe8m.vercel.app/users", {
           method: "POST",
           headers: {
             "Content-type": "application/json",
@@ -30,6 +30,7 @@ const Register = () => {
         })
           .then((res) => res.json())
           .then((result) => {
+            console.log(result);
             navigate(from);
             localStorage.setItem("token", result.token);
             toast.success("Registration Successfull!!!");

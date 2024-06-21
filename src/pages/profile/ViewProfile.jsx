@@ -4,6 +4,7 @@ import ProfileCard from "./ProfileCard";
 
 const ViewProfile = () => {
   const { user } = useAuth();
+  console.log(user);
   const [loading, setLoading] = useState(true);
   const [userInfo, setUserInfo] = useState([]);
   useEffect(() => {
@@ -16,9 +17,9 @@ const ViewProfile = () => {
         });
     }
   }, [user]);
-
+  console.log(userInfo);
   if (loading) {
-    return <div>Loading event details...</div>;
+    return <div>Loading User details...</div>;
   }
   return (
     <div className="bg-gray-100 min-h-screen w-full flex items-center justify-center">

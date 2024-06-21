@@ -5,14 +5,17 @@ import GoogleRegister from "../components/login_register/GoogleRegister";
 import FacebookRegister from "../components/login_register/FacebookRegister";
 import useAuth from "../hooks/useAuth";
 import toast from "react-hot-toast";
+import { useState } from "react";
 
 const Login = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+  const [error, setError] = useState("");
   const from = location?.state?.from?.pathname || "/";
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
@@ -24,8 +27,10 @@ const Login = () => {
         toast.success("Registration Successfull!!!");
         form.reset();
       })
-      .then((error) => {
-        console.log(error);
+      .catch(() => {
+        setError(
+          "Email Or Password Invali ! Please Correct Email and Password"
+        );
       });
   };
   return (
@@ -51,6 +56,11 @@ const Login = () => {
                 className="input input-bordered"
                 required
               />
+              {error && (
+                <label className="label">
+                  <p className="text-red-500">{error}</p>
+                </label>
+              )}
             </div>
             <div className="form-control">
               <label className="label">

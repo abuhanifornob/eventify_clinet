@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { useState } from "react";
 
 /* eslint-disable react/prop-types */
@@ -24,16 +25,7 @@ const ProfileUpdateForm = ({ user, onSubmit }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit(formData);
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      presentAddress: "",
-      permanentAddress: "",
-      photo: "",
-      gender: "",
-      nationality: "",
-    });
+    form.reset();
   };
 
   return (
