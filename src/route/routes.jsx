@@ -92,7 +92,7 @@ export const router = createBrowserRouter([
           </PrivetRoute>
         ),
         loader: ({ params }) =>
-          fetch(`https://eventify-server-pe8m.vercel.app/events/${params.id}`),
+          fetch(`http://localhost:3000/events/${params.id}`),
       },
     ],
   },

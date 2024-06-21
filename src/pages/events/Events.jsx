@@ -5,7 +5,7 @@ const Events = () => {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
-    fetch("https://eventify-server-pe8m.vercel.app/events")
+    fetch("http://localhost:3000/events")
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

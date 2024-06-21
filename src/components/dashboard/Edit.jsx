@@ -18,17 +18,14 @@ const Edit = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
-    await fetch(
-      `https://eventify-server-pe8m.vercel.app/events/${eventInfo?._id}`,
-      {
-        method: "PATCH",
-        headers: {
-          "Content-type": "application/json",
-          authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(data),
-      }
-    )
+    await fetch(`http://localhost:3000/events/${eventInfo?._id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-type": "application/json",
+        authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(data),
+    })
       .then((res) => res.json())
       .then(() => {
         toast.success("Data Update is Successful");

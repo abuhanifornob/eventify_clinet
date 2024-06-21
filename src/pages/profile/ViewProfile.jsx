@@ -9,7 +9,7 @@ const ViewProfile = () => {
   const [userInfo, setUserInfo] = useState([]);
   useEffect(() => {
     if (user) {
-      fetch(`https://eventify-server-pe8m.vercel.app/users/${user?.email}`)
+      fetch(`http://localhost:3000/users/${user?.email}`)
         .then((res) => res.json())
         .then((data) => {
           setUserInfo(data);

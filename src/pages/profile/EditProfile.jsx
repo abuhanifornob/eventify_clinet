@@ -10,7 +10,7 @@ const EditProfile = () => {
   const token = localStorage.getItem("token");
   useEffect(() => {
     if (user) {
-      fetch(`https://eventify-server-pe8m.vercel.app/users/${user?.email}`)
+      fetch(`http://localhost:3000/users/${user?.email}`)
         .then((res) => res.json())
         .then((data) => {
           setUserInfo(data);
@@ -23,7 +23,7 @@ const EditProfile = () => {
     return <div>Loading event details...</div>;
   }
   const handleProfileUpdate = async (updatedData) => {
-    fetch(`https://eventify-server-pe8m.vercel.app/users/${user.email}`, {
+    fetch(`http://localhost:3000/users/${user.email}`, {
       method: "PATCH",
       headers: {
         "Content-type": "application/json",
