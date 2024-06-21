@@ -24,6 +24,16 @@ const ProfileUpdateForm = ({ user, onSubmit }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit(formData);
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      presentAddress: "",
+      permanentAddress: "",
+      photo: "",
+      gender: "",
+      nationality: "",
+    });
   };
 
   return (
