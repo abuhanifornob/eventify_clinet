@@ -14,6 +14,7 @@ const ProfileLayout = () => {
   const handleChangePassword = async () => {
     await passworrReset(user.email).then(() => {
       toast.success(`Please check your email: ${user.email}`);
+      handleLogout();
       navigate("/");
     });
   };

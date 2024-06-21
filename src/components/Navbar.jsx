@@ -99,9 +99,11 @@ const Navbar = () => {
               </>
             )}
 
-            <li>
-              <Link to={"/dashboard"}>Dashboard</Link>
-            </li>
+            {user && (
+              <li>
+                <Link to={"/dashboard"}>Dashboard</Link>
+              </li>
+            )}
           </ul>
           <div>
             <form onSubmit={handleSearch} className="flex">
