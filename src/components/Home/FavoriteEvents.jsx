@@ -11,7 +11,9 @@ const FavoriteEvents = () => {
     const fetchEvents = async () => {
       try {
         console.log("Fetching events...");
-        const response = await fetch("http://localhost:3000/events");
+        const response = await fetch(
+          "https://eventify-server-beta.vercel.app/events"
+        );
         if (!response.ok) {
           throw new Error(
             `Network response was not ok: ${response.statusText}`

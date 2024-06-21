@@ -7,7 +7,7 @@ const SingalEventForEdit = ({ event, onDelete }) => {
   const { category, date, description, image, location, time, _id } = event;
   const token = localStorage.getItem("token");
   const handleDelete = async () => {
-    await fetch(`http://localhost:3000/events/${_id}`, {
+    await fetch(`https://eventify-server-beta.vercel.app/events/${_id}`, {
       method: "DELETE",
       headers: {
         "Content-type": "application/json",
